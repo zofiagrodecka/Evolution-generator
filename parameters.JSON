@@ -1,0 +1,11 @@
+{
+  "width": 30,
+  "height": 10,
+  "jungleWidth": 10,
+  "jungleHeight": 5,
+  "startEnergy": 30,
+  "moveEnergy": 1,
+  "plantEnergy": 5,
+  "initialAnimalsNumber": 15,
+  "mapsNumber": 2
+}
