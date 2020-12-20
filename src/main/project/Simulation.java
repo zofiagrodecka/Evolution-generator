@@ -31,7 +31,7 @@ public class Simulation extends Thread{
     private final StatisticsPanel statisticsPanel;
     public final StatisticsPanel animalInfoPanel = new StatisticsPanel(650, 80,"");
 
-    public Simulation(WorldMap map, int initialAnimalsNumber, int startEnergy, int plantEnergy, int moveEnergy, int windowX, int windowY) {
+    public Simulation(WorldMap map, int initialAnimalsNumber, int startEnergy, int plantEnergy, int moveEnergy, int windowX, int windowY, String statisticsFileName) {
 
         this.map = map;
         this.plantEnergy = plantEnergy;
@@ -45,7 +45,7 @@ public class Simulation extends Thread{
             map.place(animal);
         }
 
-        this.statistics = new Statistics(map, initialAnimalsNumber, startEnergy, statisticsFrequency);
+        this.statistics = new Statistics(map, initialAnimalsNumber, startEnergy, statisticsFrequency, statisticsFileName);
         this.statisticsPanel = new StatisticsPanel(650, 150, statistics.toHtmlString());
         this.visualisation = new Visualisation(panel, this, statisticsPanel, animalInfoPanel);
         visualisation.prepareFrame(windowX, windowY);

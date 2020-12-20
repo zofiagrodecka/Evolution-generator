@@ -23,7 +23,7 @@ public class World {
             for (int i = 0; i < parameters.mapsNumber; i++) {
 
                 maps[i] = new WorldMap(parameters.width, parameters.height, parameters.jungleWidth, parameters.jungleHeight);
-                simulations[i] = new Simulation(maps[i], parameters.initialAnimalsNumber, parameters.startEnergy, parameters.plantEnergy, parameters.moveEnergy, 10 + (i * 100), 10 + (i * 100));
+                simulations[i] = new Simulation(maps[i], parameters.initialAnimalsNumber, parameters.startEnergy, parameters.plantEnergy, parameters.moveEnergy, 10 + (i * 100), 10 + (i * 100), ("Statistics" + i + ".txt"));
             }
 
             for(Simulation engine : simulations){

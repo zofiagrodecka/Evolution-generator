@@ -20,18 +20,21 @@ public class Statistics {
     private double averageLifeLength = 1;
     private double averageChildrenNumber = 0;
     private final StatisticsWriter statisticsWriter = new StatisticsWriter();
+    private String fileName;
 
     public double kidsNumber = 0;
     private Map<Genes, Integer> genotypesNumber = new LinkedHashMap<>();
     private List<Animal> dead = new ArrayList<>();
 
 
-    public Statistics(WorldMap map, int initialAnimalsNumber, int startEnergy, int frequency){
+    public Statistics(WorldMap map, int initialAnimalsNumber, int startEnergy, int frequency, String fileName){
+
         this.map = map;
         this.animalsNumber = initialAnimalsNumber;
         findDominantGenotypes();
         this.averageEnergyLevel = startEnergy;
         this.frequency = frequency;
+        this.fileName = fileName;
     }
 
     public void actualize(){
@@ -43,7 +46,7 @@ public class Statistics {
         averageEnergyLevel = countAverageEnergy();
         averageLifeLength = countLifeLength();
         averageChildrenNumber = countAverageChildrenNumber();
-        statisticsWriter.writeStatistics("statistics.txt", toString());
+        statisticsWriter.writeStatistics(fileName, toString());
     }
 
     public List<Animal> getDominant() {
