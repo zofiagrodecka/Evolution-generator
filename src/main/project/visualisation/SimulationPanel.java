@@ -46,10 +46,6 @@ public class SimulationPanel extends JPanel implements MouseListener {
 
         setPreferredSize(new Dimension(width, height));
 
-        System.out.println("Mapa: " + map.width + " " + map.height);
-        System.out.println("szerokosc, wysokosc, komorka:  " + cellWidth + " " + cellHeight + " "+ cell);
-        System.out.println("Panel: " + width + " " + height);
-
         addMouseListener(this);
     }
 

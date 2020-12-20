@@ -15,26 +15,33 @@ public class World {
         JSONReader reader = new JSONReader();
         Parameters parameters = reader.parseParameters(new FileReader("parameters.json"));
 
-        WorldMap map = new WorldMap(parameters.width, parameters.height, parameters.jungleWidth, parameters.jungleHeight);
-        //MapVisualiser v = new MapVisualiser(map);
-        /*WorldMap[] maps = new WorldMap[parameters.mapsNumber];
-        for(int i=0; i< parameters.mapsNumber; i++)
-            maps[i] = map;*/
+        WorldMap[] maps = new WorldMap[parameters.mapsNumber];
 
-        Simulation engine = new Simulation(map, parameters.initialAnimalsNumber, parameters.startEnergy, parameters.plantEnergy, parameters.moveEnergy);
-        engine.run();
-
-        /*Simulation[] simulations = new Simulation[parameters.mapsNumber];
-        SimulationEngine engines[] = new SimulationEngine[parameters.mapsNumber];
+        Simulation[] simulations = new Simulation[parameters.mapsNumber];
 
         for(int i=0; i<parameters.mapsNumber; i++){
-            simulations[i] = new Simulation(map, parameters.initialAnimalsNumber, parameters.startEnergy, parameters.plantEnergy, parameters.moveEnergy);
-            engines[i] = new SimulationEngine(simulations[i]);
+
+            maps[i] = new WorldMap(parameters.width, parameters.height, parameters.jungleWidth, parameters.jungleHeight);
+            simulations[i] = new Simulation(maps[i], parameters.initialAnimalsNumber, parameters.startEnergy, parameters.plantEnergy, parameters.moveEnergy, 10 + (i*100), 10 + (i * 100));
         }
 
         for(Simulation engine : simulations){
-            engine.run();
-        }*/
+            engine.start();
+        }
+
+        while (true){
+
+            /*After closing all animation windows following 3 threads remains active so that's my method to force program to exit
+            Thread[main,5,main]
+            Thread[Monitor Ctrl-Break,5,main]
+            Thread[AWT-EventQueue-0,6,main]*/
+
+            if(Thread.activeCount() < 4){
+                System.exit(0);
+            }
+
+            Thread.sleep(500); // in order not to overload cpu
+        }
 
     }
 

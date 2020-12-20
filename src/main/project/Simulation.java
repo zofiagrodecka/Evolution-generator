@@ -5,9 +5,13 @@ import project.visualisation.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Simulation{
+public class Simulation extends Thread{
 
-    private final int EACH_PLANT_PER_DAY = 2;
+    private final int EACH_PLANT_PER_DAY = 1;
+
+    // tu mozna zmienic co ile epok maja sie aktualizowac statystyki ogolne mapy
+    // dodalam rowniez okno w zakomentowanym fragmencie w konstruktorze tej klasy, gdzie mozna wpisac to przed uruchomeniem programu
+    private final int statisticsFrequency = 1;
 
     private final WorldMap map;
     private final int plantEnergy;
@@ -24,7 +28,7 @@ public class Simulation{
     private final StatisticsPanel statisticsPanel;
     public final StatisticsPanel animalInfoPanel = new StatisticsPanel(650, 80,"");
 
-    public Simulation(WorldMap map, int initialAnimalsNumber, int startEnergy, int plantEnergy, int moveEnergy) {
+    public Simulation(WorldMap map, int initialAnimalsNumber, int startEnergy, int plantEnergy, int moveEnergy, int windowX, int windowY) {
 
         this.map = map;
         this.plantEnergy = plantEnergy;
@@ -38,17 +42,20 @@ public class Simulation{
             map.place(animal);
         }
 
-        InputDialog dialogWindow = new InputDialog();
-        String statisticsFrequency = dialogWindow.showWindow("After how many eras would you like to see the statistics?");
+        // dialog do ustawienia statisticsFrequency
 
-        this.statistics = new Statistics(map, initialAnimalsNumber, startEnergy, Integer.parseInt(statisticsFrequency));
+        /*InputDialog dialogWindow = new InputDialog();
+        String frequency = dialogWindow.showWindow("After how many eras would you like to see the statistics?");
+        statisticsFrequency = Integer.parseInt(frequency);*/
+
+        this.statistics = new Statistics(map, initialAnimalsNumber, startEnergy, statisticsFrequency);
         this.statisticsPanel = new StatisticsPanel(650, 150, statistics.toHtmlString());
         this.visualisation = new Visualisation(panel, this, statisticsPanel, animalInfoPanel);
-        visualisation.prepareFrame();
+        visualisation.prepareFrame(windowX, windowY);
     }
 
 
-    public void run() throws InterruptedException {
+    public void run(){
 
         panel.repaint();
 
@@ -90,11 +97,19 @@ public class Simulation{
                     }
                 }
 
-                Thread.sleep(500);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             else{
                 while(paused){
-                    Thread.sleep(5);
+                    try {
+                        Thread.sleep(5);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -127,6 +142,10 @@ public class Simulation{
         for(Animal animal : map.animals){
             animal.children.clear();
         }
+    }
+
+    public void end(){
+        endSimulation = true;
     }
 
 

@@ -21,11 +21,11 @@ public class Visualisation {
         this.animalInfoPanel = animalInfoPanel;
     }
 
-    public void prepareFrame(){
+    public void prepareFrame(int windowX, int windowY){
 
-        JFrame frame = new JFrame("Evolution simulation");
-        frame.setLocation(600,30); // approximately in the middle of my screen
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Quit the application when the JFrame is closed
+        JFrame frame = new MyFrame("Evolution simulation", simulation);
+        frame.setLocation(windowX,windowY); // approximately in the middle of my screen
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); //Quit the application when the JFrame is closed
 
         GridBagLayout layout = new GridBagLayout();
         frame.setLayout(layout);
