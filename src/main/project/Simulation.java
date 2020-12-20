@@ -10,8 +10,7 @@ public class Simulation extends Thread{
     private final int EACH_PLANT_PER_DAY = 1;
     private final int DISPLAY_TIME = 300;
 
-    // tu mozna zmienic co ile epok maja sie aktualizowac statystyki ogolne mapy
-    // dodalam rowniez okno w zakomentowanym fragmencie w konstruktorze tej klasy, gdzie mozna wpisac to przed uruchomeniem programu
+    // You can change here how often the statistics should actualise
     private int statisticsFrequency = 1;
 
     private final WorldMap map;
@@ -45,12 +44,6 @@ public class Simulation extends Thread{
             animal = new Animal(startEnergy, map);
             map.place(animal);
         }
-
-        // dialog do ustawienia statisticsFrequency
-
-        /*InputDialog dialogWindow = new InputDialog();
-        String frequency = dialogWindow.showWindow("After how many eras would you like to see the statistics?");
-        statisticsFrequency = Integer.parseInt(frequency);*/
 
         this.statistics = new Statistics(map, initialAnimalsNumber, startEnergy, statisticsFrequency);
         this.statisticsPanel = new StatisticsPanel(650, 150, statistics.toHtmlString());

@@ -18,7 +18,7 @@ public class Statistics {
     private List<Animal> dominant = new ArrayList<>();
     private double averageEnergyLevel;
     private double averageLifeLength = 1;
-    private double averageKidsNumber = 0;
+    private double averageChildrenNumber = 0;
     private final StatisticsWriter statisticsWriter = new StatisticsWriter();
 
     public double kidsNumber = 0;
@@ -42,7 +42,7 @@ public class Statistics {
         findDominantGenotypes();
         averageEnergyLevel = countAverageEnergy();
         averageLifeLength = countLifeLength();
-        averageKidsNumber = countAverageChildrenNumber();
+        averageChildrenNumber = countAverageChildrenNumber();
         statisticsWriter.writeStatistics("statistics.txt", toString());
     }
 
@@ -52,12 +52,12 @@ public class Statistics {
 
     public String toString(){
         return
-                "liczba zwierząt:  " + animalsNumber+ "\n" +
-                        "liczba roślin: " + plantsNumber+ "\n" +
-                        "dominujący genotyp: " + dominantGenotype + " " +"\n" +
-                        "średni poziom energii: " + averageEnergyLevel+ "\n" +
-                        "średnia długość życia zwierząt: " + averageLifeLength +"\n" +
-                        "średnia liczba dzieci: " + averageKidsNumber + "\n";
+                "number of animals:  " + animalsNumber+ "\n" +
+                        "number of plants: " + plantsNumber+ "\n" +
+                        "dominant genotype: " + dominantGenotype + " " +"\n" +
+                        "average energy level: " + averageEnergyLevel+ "\n" +
+                        "average animals' life length: " + averageLifeLength +"\n" +
+                        "average children number: " + averageChildrenNumber + "\n";
     }
 
     public String toHtmlString(){

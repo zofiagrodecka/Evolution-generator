@@ -32,11 +32,11 @@ public class SimulationPanel extends JPanel implements MouseListener {
         this.simulation = simulation;
         this.cellWidth = MAX_SCREEN_WIDTH/map.width;
         if(cellWidth < MIN_CELL){
-            throw new IllegalArgumentException("Za duża szerokość mapy: " + map.width);
+            throw new IllegalArgumentException("Too big map width entered: " + map.width);
         }
         this.cellHeight = MAX_SCREEN_HEIGHT/map.height;
         if(cellHeight < MIN_CELL){
-            throw new IllegalArgumentException("Za duża wysokość mapy: " + map.height);
+            throw new IllegalArgumentException("Too big map height entered: " + map.height);
         }
 
         this.cell = min(cellWidth, cellHeight);
@@ -92,7 +92,7 @@ public class SimulationPanel extends JPanel implements MouseListener {
         Vector2d mapPosition = new Vector2d(x/cell, y/ cell);
         if(map.objectAt(mapPosition) instanceof MapCell) {
             Animal animal = ((MapCell) map.objectAt(mapPosition)).first();
-            simulation.animalInfoPanel.updateText("Genotyp tego zwierzęcia: " + animal.getGenes().toString());
+            simulation.animalInfoPanel.updateText("This animal's genotype: " + animal.getGenes().toString());
             InputDialog dialogWindow = new InputDialog();
             String erasNumber = dialogWindow.showWindow("How many eras would you like to track history?");
             simulation.initAnimalHistory(new AnimalHistory(animal, Integer.parseInt(erasNumber), simulation.era, simulation));

@@ -33,14 +33,14 @@ public class AnimalHistory {
     public String toString(){
 
         if(deathEra <= 0) {
-            return "liczba dzieci: " + kidsNumber + "\n" +
-                    "liczba potomków: " + descendantsNumber + "\n" +
-                    "zwierzę nie zmarło w tym czasie.";
+            return "number of children: " + kidsNumber + "\n" +
+                    "number of descendants: " + descendantsNumber + "\n" +
+                    "this animal didn't die during this time.";
         }
 
-        return "liczba dzieci: " + kidsNumber + "\n" +
-                "liczba potomków: " +  descendantsNumber + "\n" +
-                "zwierzę zmarło w epoce: " + deathEra;
+        return "number of children: " + kidsNumber + "\n" +
+                "number of descendants: " +  descendantsNumber + "\n" +
+                "animal died in the era: " + deathEra;
     }
 
     public int endEra() {
