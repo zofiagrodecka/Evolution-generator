@@ -21,6 +21,7 @@ public class MyFrame extends JFrame {
 
                 //System.exit(0);
                 simulation.end();
+                simulation.setWindowClosed();
             }
         });
     }

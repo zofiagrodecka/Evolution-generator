@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Simulation extends Thread{
 
     private final int EACH_PLANT_PER_DAY = 1;
-    private final int DISPLAY_TIME = 200;
+    private final int DISPLAY_TIME = 300;
 
     // tu mozna zmienic co ile epok maja sie aktualizowac statystyki ogolne mapy
     // dodalam rowniez okno w zakomentowanym fragmencie w konstruktorze tej klasy, gdzie mozna wpisac to przed uruchomeniem programu
@@ -23,6 +23,7 @@ public class Simulation extends Thread{
     private boolean paused = false;
     private boolean animalClicked = false;
     private boolean endSimulation = false;
+    private boolean windowClosed = false;
 
     public int era = 0;
 
@@ -116,8 +117,16 @@ public class Simulation extends Thread{
                     }
                 }
             }
-
         }
+
+        while(!windowClosed){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void pauseSimulation(){
@@ -131,6 +140,10 @@ public class Simulation extends Thread{
     public void setShowDominant(boolean state){
         panel.showDominant = state;
         panel.repaint();
+    }
+
+    public void setWindowClosed(){
+        windowClosed = true;
     }
 
     public void initAnimalHistory(AnimalHistory history){

@@ -32,7 +32,7 @@ public class World {
             }
 
         }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         while (true){
@@ -46,7 +46,7 @@ public class World {
                 System.exit(0);
             }
 
-            Thread.sleep(500); // in order not to overload cpu
+            Thread.sleep(200); // in order not to overload cpu
         }
 
     }

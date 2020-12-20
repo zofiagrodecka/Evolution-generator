@@ -130,7 +130,9 @@ public class WorldMap implements IPositionChangeObserver{
                     x += jungleWidth;
                 }
             }
-            x = random.nextInt(width);
+            else {
+                x = random.nextInt(width);
+            }
 
             if (x < lowerLeftJungle.x || x > upperRightJungle.x) {
                 y = random.nextInt(height);
@@ -149,7 +151,6 @@ public class WorldMap implements IPositionChangeObserver{
 
         if(tries < MAX_TRIES)
             insertPlant(new Plant(plantPosition, this));
-        //System.out.println("Step plant position: " + plantPosition);
     }
 
     public void addJunglePlant(){
