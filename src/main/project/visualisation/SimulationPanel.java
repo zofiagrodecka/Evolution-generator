@@ -32,11 +32,11 @@ public class SimulationPanel extends JPanel implements MouseListener {
         this.simulation = simulation;
         this.cellWidth = MAX_SCREEN_WIDTH/map.width;
         if(cellWidth < MIN_CELL){
-            System.out.println("Za duza szerokosc mapy: " + map.width);
+            throw new IllegalArgumentException("Za duża szerokość mapy: " + map.width);
         }
         this.cellHeight = MAX_SCREEN_HEIGHT/map.height;
         if(cellHeight < MIN_CELL){
-            System.out.println("Za duza wysokosc mapy: " + map.height);
+            throw new IllegalArgumentException("Za duża wysokość mapy: " + map.height);
         }
 
         this.cell = min(cellWidth, cellHeight);

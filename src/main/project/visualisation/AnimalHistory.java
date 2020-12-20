@@ -40,8 +40,7 @@ public class AnimalHistory {
 
         return "liczba dzieci: " + kidsNumber + "\n" +
                 "liczba potomków: " +  descendantsNumber + "\n" +
-                "zwierzę zmarło w epoce: " + (simulation.era-erasNumber) + "\n"+
-                "(epoka: " + deathEra + " z wszystkich)";
+                "zwierzę zmarło w epoce: " + deathEra;
     }
 
     public int endEra() {

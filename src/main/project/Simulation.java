@@ -8,19 +8,22 @@ import java.util.LinkedList;
 public class Simulation extends Thread{
 
     private final int EACH_PLANT_PER_DAY = 1;
+    private final int DISPLAY_TIME = 200;
 
     // tu mozna zmienic co ile epok maja sie aktualizowac statystyki ogolne mapy
     // dodalam rowniez okno w zakomentowanym fragmencie w konstruktorze tej klasy, gdzie mozna wpisac to przed uruchomeniem programu
-    private final int statisticsFrequency = 1;
+    private int statisticsFrequency = 1;
 
     private final WorldMap map;
     private final int plantEnergy;
     private final int moveEnergy;
     private final Statistics statistics;
     private AnimalHistory animalHistory;
+
     private boolean paused = false;
     private boolean animalClicked = false;
     private boolean endSimulation = false;
+
     public int era = 0;
 
     private final SimulationPanel panel;
@@ -98,10 +101,11 @@ public class Simulation extends Thread{
                 }
 
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(DISPLAY_TIME);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
             }
             else{
                 while(paused){

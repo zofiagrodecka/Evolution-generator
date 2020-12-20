@@ -12,21 +12,27 @@ public class World {
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
 
 
-        JSONReader reader = new JSONReader();
-        Parameters parameters = reader.parseParameters(new FileReader("parameters.json"));
+        try {
+            JSONReader reader = new JSONReader();
+            Parameters parameters = reader.parseParameters(new FileReader("parameters.json"));
 
-        WorldMap[] maps = new WorldMap[parameters.mapsNumber];
+            WorldMap[] maps = new WorldMap[parameters.mapsNumber];
 
-        Simulation[] simulations = new Simulation[parameters.mapsNumber];
+            Simulation[] simulations = new Simulation[parameters.mapsNumber];
 
-        for(int i=0; i<parameters.mapsNumber; i++){
+            for (int i = 0; i < parameters.mapsNumber; i++) {
 
-            maps[i] = new WorldMap(parameters.width, parameters.height, parameters.jungleWidth, parameters.jungleHeight);
-            simulations[i] = new Simulation(maps[i], parameters.initialAnimalsNumber, parameters.startEnergy, parameters.plantEnergy, parameters.moveEnergy, 10 + (i*100), 10 + (i * 100));
-        }
+                maps[i] = new WorldMap(parameters.width, parameters.height, parameters.jungleWidth, parameters.jungleHeight);
+                simulations[i] = new Simulation(maps[i], parameters.initialAnimalsNumber, parameters.startEnergy, parameters.plantEnergy, parameters.moveEnergy, 10 + (i * 100), 10 + (i * 100));
+            }
 
-        for(Simulation engine : simulations){
-            engine.start();
+            for(Simulation engine : simulations){
+
+                engine.start();
+            }
+
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
 
         while (true){
