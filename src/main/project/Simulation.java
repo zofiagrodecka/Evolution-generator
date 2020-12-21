@@ -9,10 +9,10 @@ import java.util.LinkedList;
 public class Simulation extends Thread{
 
     private final int EACH_PLANT_PER_DAY = 1;
-    private final int DISPLAY_TIME = 300;
+    private final int DISPLAY_TIME = 500;
 
-    // You can change here how often the statistics should actualise
-    private int statisticsFrequency = 1;
+    // You can change here how often the statistics should be written in the file
+    private int statisticsFrequency = 10;
 
     private final WorldMap map;
     private final int plantEnergy;
@@ -83,10 +83,12 @@ public class Simulation extends Thread{
 
                     statistics.passDead(map.dead);
 
+                    statistics.actualize();
+                    statisticsPanel.updateText(statistics.toHtmlString());
+
                     if (era % statistics.frequency == 0) {
 
-                        statistics.actualize();
-                        statisticsPanel.updateText(statistics.toHtmlString());
+                        statistics.writeToFile();
                     }
 
                     if (animalClicked && era <= animalHistory.beginningEra + era) {
