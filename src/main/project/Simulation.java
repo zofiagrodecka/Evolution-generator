@@ -2,6 +2,7 @@ package project;
 
 import project.visualisation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -108,10 +109,12 @@ public class Simulation extends Thread{
                 Thread.sleep(100);
             }
 
+        } catch (IOException ex){
+            System.out.println("File read error");
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             e.printStackTrace();
         }
-
     }
 
     public void pauseSimulation(){

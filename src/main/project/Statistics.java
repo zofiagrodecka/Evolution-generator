@@ -38,7 +38,7 @@ public class Statistics {
         this.fileName = fileName;
     }
 
-    public void actualize() {
+    public void actualize() throws IOException {
         dominant.clear();
 
         animalsNumber = map.animals.size();
@@ -47,12 +47,7 @@ public class Statistics {
         averageEnergyLevel = countAverageEnergy();
         averageLifeLength = countLifeLength();
         averageChildrenNumber = countAverageChildrenNumber();
-
-        try {
-            statisticsWriter.writeStatistics(fileName, toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        statisticsWriter.writeStatistics(fileName, toString());
     }
 
     public List<Animal> getDominant() {
