@@ -56,68 +56,60 @@ public class Simulation extends Thread{
 
         panel.repaint();
 
-        while(! endSimulation) {
+        try {
+            while (!endSimulation) {
 
-            if(map.animals.size() == 0){
-                endSimulation = true;
-            }
-
-            if( ! paused) {
-                era++;
-
-                map.removeDead();
-
-                move();
-
-                eat();
-                reproduce();
-
-                for(int i = 0; i<EACH_PLANT_PER_DAY; i++) {
-                    map.addJunglePlant();
-                    map.addStepPlant();
+                if (map.animals.size() == 0) {
+                    endSimulation = true;
                 }
 
-                panel.repaint();
+                if (!paused) {
+                    era++;
 
-                statistics.passDead(map.dead);
+                    map.removeDead();
 
-                if (era % statistics.frequency == 0) {
+                    move();
 
-                    statistics.actualize();
-                    statisticsPanel.updateText(statistics.toHtmlString());
-                }
+                    eat();
+                    reproduce();
 
-                if(animalClicked && era <= animalHistory.beginningEra + era ){
-                    animalHistory.countHistory();
-                    if(era == animalHistory.endEra()){
-                        endCountingHistory();
+                    for (int i = 0; i < EACH_PLANT_PER_DAY; i++) {
+                        map.addJunglePlant();
+                        map.addStepPlant();
                     }
-                }
 
-                try {
+                    panel.repaint();
+
+                    statistics.passDead(map.dead);
+
+                    if (era % statistics.frequency == 0) {
+
+                        statistics.actualize();
+                        statisticsPanel.updateText(statistics.toHtmlString());
+                    }
+
+                    if (animalClicked && era <= animalHistory.beginningEra + era) {
+                        animalHistory.countHistory();
+                        if (era == animalHistory.endEra()) {
+                            endCountingHistory();
+                        }
+                    }
+
                     Thread.sleep(DISPLAY_TIME);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 
-            }
-            else{
-                while(paused){
-                    try {
+                } else {
+                    while (paused) {
                         Thread.sleep(5);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
                 }
             }
-        }
 
-        while(!windowClosed){
-            try {
+            while (!windowClosed) {
                 Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
     }
