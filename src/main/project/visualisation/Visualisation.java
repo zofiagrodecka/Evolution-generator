@@ -11,8 +11,8 @@ public class Visualisation {
     private final Simulation simulation;
     private final SimulationPanel simulationPanel;
 
-    public final StatisticsPanel statisticsPanel;
-    public final StatisticsPanel animalInfoPanel;
+    private final StatisticsPanel statisticsPanel;
+    private final StatisticsPanel animalInfoPanel;
 
     public Visualisation(SimulationPanel panel, Simulation simulation, StatisticsPanel statisticsPanel, StatisticsPanel animalInfoPanel){
         this.simulationPanel = panel;

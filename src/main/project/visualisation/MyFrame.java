@@ -19,7 +19,6 @@ public class MyFrame extends JFrame {
 
             public void windowClosing(WindowEvent e) {
 
-                //System.exit(0);
                 simulation.end();
                 simulation.setWindowClosed();
             }
