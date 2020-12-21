@@ -12,15 +12,12 @@ public class StatisticsWriter {
 
     }
 
-    public void writeStatistics(String filename, String text){
+    public void writeStatistics(String filename, String text) throws IOException {
 
         try (PrintWriter file = new PrintWriter(new FileWriter(filename, append))) {
 
             file.println(text);
             append = true;
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

@@ -2,6 +2,7 @@ package project;
 
 import project.visualisation.StatisticsWriter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public class Statistics {
         this.fileName = fileName;
     }
 
-    public void actualize(){
+    public void actualize() {
         dominant.clear();
 
         animalsNumber = map.animals.size();
@@ -46,7 +47,12 @@ public class Statistics {
         averageEnergyLevel = countAverageEnergy();
         averageLifeLength = countLifeLength();
         averageChildrenNumber = countAverageChildrenNumber();
-        statisticsWriter.writeStatistics(fileName, toString());
+
+        try {
+            statisticsWriter.writeStatistics(fileName, toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Animal> getDominant() {
