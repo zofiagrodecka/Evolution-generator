@@ -32,7 +32,7 @@ public class Statistics {
 
         this.map = map;
         this.animalsNumber = initialAnimalsNumber;
-        findDominantGenotypes();
+        findDominantAnimals();
         this.averageEnergyLevel = startEnergy;
         this.frequency = frequency;
         this.fileName = fileName;
@@ -43,7 +43,7 @@ public class Statistics {
 
         animalsNumber = map.animals.size();
         plantsNumber = map.plants.size();
-        findDominantGenotypes();
+        findDominantAnimals();
         averageEnergyLevel = countAverageEnergy();
         averageLifeLength = countLifeLength();
         averageChildrenNumber = countAverageChildrenNumber();
@@ -73,7 +73,7 @@ public class Statistics {
         dead.addAll(deadMapAnimals);
     }
 
-    private void findDominantGenotypes(){
+    private void findDominantAnimals(){
 
         int dominantAnimalsNumber = 0;
         int prevValue = 0;
