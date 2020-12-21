@@ -110,7 +110,8 @@ public class Simulation extends Thread{
             }
 
         } catch (IOException ex){
-            System.out.println("File read error");
+            System.out.println("File read error" + ex.getMessage());
+            ex.printStackTrace();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             e.printStackTrace();
