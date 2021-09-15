@@ -25,6 +25,7 @@ public class Visualisation {
 
         JFrame frame = new MyFrame("Evolution simulation", simulation);
         frame.setLocation(windowX,windowY);
+        frame.setResizable(false);
 
         GridBagLayout layout = new GridBagLayout();
         frame.setLayout(layout);

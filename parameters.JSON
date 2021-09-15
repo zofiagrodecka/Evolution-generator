@@ -1,11 +1,11 @@
 {
-  "width": 20,
-  "height": 10,
-  "jungleWidth": 10,
-  "jungleHeight": 5,
-  "startEnergy": 30,
+  "width": 100,
+  "height": 100,
+  "jungleWidth": 30,
+  "jungleHeight": 30,
+  "startEnergy": 50,
   "moveEnergy": 1,
-  "plantEnergy": 5,
-  "initialAnimalsNumber": 15,
-  "mapsNumber": 2
+  "plantEnergy": 5000,
+  "initialAnimalsNumber": 50,
+  "mapsNumber": 1
 }

@@ -8,8 +8,8 @@ import java.util.LinkedList;
 
 public class Simulation extends Thread{
 
-    private final int EACH_PLANT_PER_DAY = 1;
-    private final int DISPLAY_TIME = 300;
+    private final int EACH_PLANT_PER_DAY = 2;
+    private final int DISPLAY_TIME = 100;
 
     // You can change here how often the statistics should be written in the file
     private int statisticsFrequency = 10;
