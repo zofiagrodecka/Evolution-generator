@@ -1,6 +1,8 @@
 package project;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class WorldMap implements IPositionChangeObserver{
 
@@ -16,9 +18,9 @@ public class WorldMap implements IPositionChangeObserver{
     public final Vector2d lowerLeftJungle;
     public final Vector2d upperRightJungle;
 
-    public HashMap<Vector2d, Plant> plants = new LinkedHashMap<>();
-    public List<Animal> animals = new ArrayList<>();
-    public HashMap<Vector2d, MapCell> occupiedPositions = new LinkedHashMap<>();
+    public Map<Vector2d, Plant> plants = new ConcurrentHashMap<>();
+    public List<Animal> animals = new CopyOnWriteArrayList<>();
+    public Map<Vector2d, MapCell> occupiedPositions = new ConcurrentHashMap<>();
     public List<Animal> dead = new ArrayList<>();
     private List<Animal> unbornChildren = new ArrayList<>();
 
